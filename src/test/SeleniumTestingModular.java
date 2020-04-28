@@ -8,19 +8,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import config.PropertiesFile;
+
 public class SeleniumTestingModular {
-	static String browser;
+	public static String browser;
 	static WebDriver driver;
 
 	public static void main(String[] args) {
-		setBrowser();
+		//setBrowser();
+		PropertiesFile.readPropertiesFile();
 		setBrowserConfig();
 		runTest();
+		PropertiesFile.writePropertiesFile();
 	}
 
 		//setBrowser
 		//setBrowserConfig
 		//runTest
+//logout	
 	
 	/**
 	 * 25/04/2020
@@ -28,7 +33,7 @@ public class SeleniumTestingModular {
 	 */
 	
 		public static void setBrowser() {
-			browser="Chrome";
+			browser="Firefox";
 		}
 
 		public static void setBrowserConfig() {
@@ -42,6 +47,9 @@ public class SeleniumTestingModular {
 				System.setProperty("webdriver.gecko.driver", projectLocation+"\\lib\\driver\\geckodriver.exe");
 				driver = new FirefoxDriver();              
 			}
+			
+			
+			
 
 		}
 		public static void runTest() {
@@ -69,11 +77,11 @@ public class SeleniumTestingModular {
 			
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-			driver.findElement(By.id("menu_admin_viewAdminModule")).click();
-
-			Select userType = new Select(driver.findElement(By.id("searchSystemUser_userType")));
+			//driver.findElement(By.id("menu_admin_viewAdminModule")).click();
+			//Select userType = new Select(driver.findElement(By.id("searchSystemUser_userType")));
 			//userType.selectByVisibleText("ESS");
-			userType.selectByIndex(1);
+			//userType.selectByIndex(1);
 
 		}
+		
 	}
